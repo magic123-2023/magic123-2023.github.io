@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XB3PR2Y1TQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XB3PR2Y1TQ');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Magic123: One Image to High-Quality 3D Object Generation Using Diffusion Priors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" href="/assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta property="og:site_name"
+        content="Magic123: One Image to High-Quality 3D Object Generation Using Diffusion Priors" />
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title"
+        content="Magic123: One Image to High-Quality 3D Object Generation Using Diffusion Priors" />
+    <meta property="og:description"
+        content="Magic123: One Image to High-Quality 3D Object Generation Using Diffusion Priors, 2023." />
+    <meta property="og:url" content="https://magic123-2023.github.io/" />
+    <meta property="og:image" content="https://dreamfusion3d.github.io/assets/images/dreamfusion_samples.png" />
+    <!-- todo change the sample image here  -->
+
+    <meta property="article:publisher" content="https://magic123-2023.github.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title"
+        content="Magic123: One Image to High-Quality 3D Object Generation Using Diffusion Priors" />
+    <meta name="twitter:description"
+        content="We combine 2D and 3D priors to generate photo-realistic 3D objects from a single image." />
+    <meta name="twitter:url" content="https://dreamfusion3d.github.io/" />
+    <meta name="twitter:image" content="https://dreamfusion3d.github.io/assets/images/dreamfusion_samples.png" />
+    <!-- <meta name="twitter:site" content="" /> -->
+
+    <script src="assets/js/video_comparison.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+    <!-- <div class="banner">
+      <video class="video lazy"
+          poster="https://dreamfusion-cdn.ajayj.com/sept28/banner_1x6_customhue_A.jpg"
+          autoplay loop playsinline muted>
+        <source data-src="https://dreamfusion-cdn.ajayj.com/sept28/banner_1x6_customhue_A.mp4" type="video/mp4"></source>
+      </video>
+    </div> -->
+    <div class="highlight-clean" style="padding-bottom: 10px;">
+        <div class="container" style="max-width: 768px;">
+            <h1 class="text-center"><b>Magic123</b>: One Image to High-Quality 3D Object Generation Using Diffusion
+                Priors</h1>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="container" style="max-width: 768px;">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h4><a class="text-center">Anonymous Authors</a></h5>
+                            <!-- <h6 class="text-center">Google Research</h6> -->
+                    </div>
+                    <!-- Additional author columns can be added here -->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="buttons" style="margin-bottom: 8px;">
+            <a class="btn btn-light" role="button" href="https://arxiv.org/abs/2209.14988">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
+                </svg>Paper
+            </a>
+            <a class="btn btn-light disabled border border-dark" aria-disabled="true" role="button" href="#">
+                <svg style="visibility:hidden;width:0px;height:24px;margin-left:-12px;margin-right:12px" width="0px" height="24px" viewBox="0 0 375 531">
+                    <polygon stroke="#000000" points="0.5,0.866 459.5,265.87 0.5,530.874 "/>
+                </svg>
+                Project
+            </a>
+            <a class="btn btn-light" role="button" href="/gallery.html">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" width="24px" height="24px" viewBox="0 0 375 531">
+                    <polygon stroke="#000000" points="0.5,0.866 459.5,265.87 0.5,530.874 "/>
+                </svg>
+                Gallery
+            </a>
+        </div> -->
+    </div>
+    <hr class="divider" />
+    <div class="container" style="max-width: 768px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Abstract</h2>
+                <p>
+                    <!-- <strong> -->
+                    Realistic 3D reconstruction from a single reference image is a challenging task. Previous approaches
+                    have relied either on 3D priors, which limit their generation capabilities to the available real 3D
+                    data, or on 2D priors that lead to poor geometry. In this work, we present Magic123, a two-stage
+                    coarse-to-fine solution fo high-quality, textured 3D meshes generation from a single unposed image
+                    in the wild. In the first stage, we optimize a coarse neural radiance field using a reference view
+                    and other random views generated by a 2D diffusion prior. We leverage textual inversion to encourage
+                    the diffusion prior yield the same object with a consistent appearance across views. Monocular depth
+                    and normal estimation from the reference image are used to constrain the 3D reconstruction and avoid
+                    collapsed solutions, e.g. flat geometry. In the second stage, we optimize a differentiable mesh
+                    representation directly, to yield a high-quality and high-resolution mesh with a visually appealing
+                    texture that respects the reference image. Our Magic123 approach outperforms prior image-to-3D
+                    techniques by a large margin, as demonstrated through extensive experiments on various realshot
+                    images in the wild and on synthetic benchmarks. Our code, models, and generated 3D assets will be
+                    made publicly available.
+                    <!-- </strong> -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 768px;">
+        <div class="row captioned_videos">
+            <div class="col-md-12">
+                <!-- Image -->
+                <img src="assets/images/magic123_pipeline_v1.png" alt="Image description" class="img-fluid">
+                <h6 class="caption">Given a single view image, Magic123 can generates high quality 3D objects. We
+                    leverage both 2D and 3D priors for our mesh optimization, where 2D prior is from Stable Diffusion,
+                    and 3D prior is from the first stage's training of NeRF.</h6>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <hr class="divider" />
+    <div class="container" style="max-width: 1080px;">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Example generated objects</h2>
+                <p>DreamFusion generates objects and scenes from diverse captions. </p>
+            </div>
+            <!-- <div class="col-sm-4 my-auto">
+                <a href="/gallery.html" class="btn btn-primary btn-lg btn-search"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewbox="0 0 600 550">
+                    <path fill="none" stroke="#fff" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/>
+                    </svg>Search assets
+                </a>
+            </div> -->
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <!-- Row 1 -->
+                <div class="col-1 d-flex align-items-center">
+                    <div class="method-title">
+                        Input
+                    </div>
+                </div>
+                <div class="col-3">
+                    <img src="assets/videos/reference/sparrow.png" alt="Sparrow Image" class="img-fluid magic-size">
+                </div>
+                <div class="col-3">
+                    <img src="assets/videos/reference/bear.png" alt="Bear Image" class="img-fluid magic-size">
+                </div>
+                <div class="col-3">
+                    <img src="assets/videos/reference/dragon.png" alt="Dragon Image" class="img-fluid magic-size">
+                </div>
+                <div class="col-3">
+                    <img src="assets/videos/reference/banana.png" alt="Banana Image" class="img-fluid magic-size">
+                </div>
+            </div>
+            <div class="row">
+                <!-- Row 2 -->
+                <div class="col-1 d-flex align-items-center">
+                    <div class="method-title">
+                        <a href="https://ku-cvlab.github.io/3DFuse/">3D Fuse</a>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/3d_fuse/sparrow.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/3d_fuse/bear.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/3d_fuse/dragon.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/3d_fuse/banana.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Row 3 -->
+                <div class="col-1 d-flex align-items-center">
+                    <div class="method-title">
+                        <a href="https://vita-group.github.io/NeuralLift-360/">Neural Lift</a>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/neural_lift/sparrow.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/neural_lift/bear.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/neural_lift/dragon.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/neural_lift/banana.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Row 3 -->
+                <div class="col-1 d-flex align-items-center">
+                    <div class="method-title">
+                        <a href="https://lukemelas.github.io/realfusion/">Real Fusion</a>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/realfusion/sparrow.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/realfusion/bear.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/realfusion/dragon.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/realfusion/banana.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Row 4 -->
+                <div class="col-1 d-flex align-items-center">
+                    <div class="method-title">
+                        Magic123
+                    </div>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic123/sparrow.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic123/bear.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic123/dragon.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic123/banana.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Row 4 -->
+                <div class="col-1 d-flex align-items-center">
+                    <div class="method-title">
+                        Magic123 Shape-E
+                    </div>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic_shape_e/cherry.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic_shape_e/bear.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic_shape_e/dragon.mp4" autoplay loop playsinline muted
+                        class="magic-size" type="video/mp4"></video>
+                </div>
+                <div class="col-3">
+                    <video src="assets/videos/magic_shape_e/teapot.mp4" autoplay loop playsinline muted class="magic-size"
+                        type="video/mp4"></video>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <hr class="divider" />
+
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+                        <i class="fas fa-file-pdf"></i>
+                    </a>
+                    <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <div class="columns is-centered">
+                    <div class="column is-8">
+                        <div class="content">
+                            <p>
+                                This website is licensed under a <a rel="license"
+                                    href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                                    Commons Attribution-ShareAlike 4.0 International License</a>.
+                            </p>
+                            <p>
+                                We borrow the <a
+                                    href="https://dreamfusion3d.github.io/">source code</a> for our website.
+                                We sincerely appreciate DreamFusion authors for their awesome templates.
+                                <!-- we just ask that you link back to this page in the footer.
+                                Please remember to remove the analytics code included in the header of the website which
+                                you do not want on your website. -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <hr class="divider" />
+
+
+        <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
+        <script src="/assets/js/yall.js"></script>
+        <script>
+            yall({
+                observeChanges: true
+            });
+        </script>
+        <script src="/assets/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js">
+        </script>
+        <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>
+        <!-- Import the component -->
+</body>
+
+</html>

@@ -146,29 +146,7 @@
 
 
 
-    <hr class="divider" />
-
-    <div class="container" style="max-width: 1080px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Tradeoff between 2D and 3D priors in Magic123</h2>
-                <p> We compare single image reconstructions for three cases: a cactus (common object), two stacked
-                    donuts (less common object), and a dragon statue (uncommon object).
-                    Magic123 with only 2D prior (on the right) favors geometry exploration, generating 3D content with
-                    more imagination but potentially lacking 3D consistency. Magic123 with only 3D prior prioritizes
-                    geometry exploitation, resulting in precise yet potentially simplified geometry with reduced
-                    details. Magic123 thus proposes to use both 2D and 3D prior and introduces a tradeoff parameter
-                    \( \lambda_{2D/3D} \)  to control the geometry exploration and exploitation. We provide a balanced point
-                    \( \lambda_{2D/3D}=1 \) , with which Magic123 consistently offers
-                    identity-preserving 3D content with fine-grained geometry and visually appealing texture. </p>
-            </div>
-        </div>
-        <div class="row justify-content-center" style="padding: 0; margin: 0;">
-            <div class="col-md-8 text-center">
-                <img src="assets/images/priors.png" alt="Image description" class="img-fluid">
-            </div>
-        </div>
-    </div>
+    
 
 
     <hr class="divider" />
@@ -346,7 +324,35 @@
 
 
 
+        <hr class="divider" />
 
+        <div class="container" style="max-width: 1080px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Tradeoff between 2D and 3D priors in Magic123</h2>
+                    <p> We compare single image reconstructions for three cases: a cactus (common object), two stacked
+                        donuts (less common object), and a dragon statue (uncommon object).
+                        Magic123 with only 2D prior (on the right) favors geometry exploration, generating 3D content with
+                        more imagination but potentially lacking 3D consistency. Magic123 with only 3D prior prioritizes
+                        geometry exploitation, resulting in precise yet potentially simplified geometry with reduced
+                        details. Magic123 thus proposes to use both 2D and 3D prior and introduces a tradeoff parameter
+                        \( \lambda_{2D/3D} \)  to control the geometry exploration and exploitation. We provide a balanced point
+                        \( \lambda_{2D/3D}=1 \) , with which Magic123 consistently offers
+                        identity-preserving 3D content with fine-grained geometry and visually appealing texture. </p>
+                </div>
+            </div>
+            <div class="row justify-content-center" style="padding: 0; margin: 0;">
+                <div class="col-md-8 text-center">
+                    <img src="assets/images/priors.png" alt="Image description" class="img-fluid">
+                    <div style="height: 30px;"></div>
+
+                    <img src="assets/images/coarse_2_fine.png" alt="Image description" class="img-fluid">
+                    <div style="height: 20px;"></div>
+
+                    <img src="assets/images/2d_3d.png" alt="Image description" class="img-fluid">
+                </div>
+            </div>
+        </div>
 
 
 

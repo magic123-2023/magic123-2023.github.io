@@ -1,5 +1,5 @@
 {
-    "name": "Magic123: One Image to High-Quality 3D Object Generation Using Diffusion Priors",
+    "name": "Magic123: One Image to High-Quality 3D Object Generation Using Both 2D and 3D Diffusion Priors",
     "short_name": "Magic123",
     "icons": [{
         "src": "/dragon.png",
